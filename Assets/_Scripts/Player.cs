@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     public static Player instance;
 
     private int tickets;
-    private int level;
+    private int level = 1;
 
     public Action<int> OnTicketChange;
     public Action<int> OnLevelChange;
@@ -36,6 +36,10 @@ public class Player : MonoBehaviour
     public int GetTickets()
     {
         return tickets;
+    }
+    public int GetLevel()
+    {
+        return level;
     }
     public void NewLevel()
     {

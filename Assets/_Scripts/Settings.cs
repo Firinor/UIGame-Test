@@ -37,21 +37,21 @@ public class Settings : MonoBehaviour
     private void BackgroundOff()
     {
         audioMixerGroup.audioMixer.SetFloat("background", -80);
-        backgroundImage.sprite = spritesLibrary[0];
+        backgroundImage.sprite = Resources.Load<Sprite>("Textures/settings/musicOff");
     }
     private void BackgroundOn()
     {
         audioMixerGroup.audioMixer.SetFloat("background", 0);
-        backgroundImage.sprite = spritesLibrary[1];
+        backgroundImage.sprite = Resources.Load<Sprite>("Textures/settings/musicOn");
     }
     private void EffectsOff()
     {
         audioMixerGroup.audioMixer.SetFloat("effects", -80);
-        effectsImage.sprite = spritesLibrary[2];
+        effectsImage.sprite = Resources.Load<Sprite>("Textures/settings/effectsOff");
     }
     private void EffectsOn()
     {
         audioMixerGroup.audioMixer.SetFloat("effects", 0);
-        effectsImage.sprite = spritesLibrary[3];
+        effectsImage.sprite = Resources.Load<Sprite>("Textures/settings/effectsOn");
     }
 }

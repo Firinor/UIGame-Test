@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -6,7 +7,18 @@ public class Player : MonoBehaviour
     public static Player instance;
 
     private int tickets;
+    public int Tickets 
+    { 
+        get { return tickets; }
+        set 
+        {
+            tickets = value;
+            OnTicketChange?.Invoke(value);
+        } 
+    }
     private int level = 1;
+
+    public List<string> Goods = new(); //locations, skins (by ID)
 
     public Action<int> OnTicketChange;
     public Action<int> OnLevelChange;
@@ -31,6 +43,11 @@ public class Player : MonoBehaviour
     {
         tickets += reward;
         LastBonusTime = DateTime.Now;
+        OnTicketChange?.Invoke(tickets);
+    }
+    public void AddTickets(int reward)
+    {
+        tickets += reward;
         OnTicketChange?.Invoke(tickets);
     }
     public int GetTickets()

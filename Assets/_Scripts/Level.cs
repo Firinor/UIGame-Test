@@ -11,6 +11,8 @@ public class Level : MonoBehaviour
     private Button button;
     private TextMeshProUGUI text;
 
+    private bool onSubscription;
+
 
     private void Start()
     {
@@ -20,6 +22,7 @@ public class Level : MonoBehaviour
         ID = int.Parse(text.text);
 
         Player.instance.OnLevelChange += CheckAccess;
+        onSubscription = true;
 
         CheckAccess(Player.instance.GetLevel());
     }
@@ -49,6 +52,16 @@ public class Level : MonoBehaviour
     public void LevelStart()
     {
         if(ID == Player.instance.GetLevel())
+        {
             Player.instance.NewLevel();
+            Player.instance.OnLevelChange -= CheckAccess;
+            onSubscription = false;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if(onSubscription)
+            Player.instance.OnLevelChange -= CheckAccess;
     }
 }
